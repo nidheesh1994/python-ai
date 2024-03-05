@@ -10,13 +10,10 @@ class Doll:
 
 def count_nested_dolls(doll):
 
-    print("Doll index:", doll.index)
     child = doll.open()
 
     if not child: return 1
     
-    print("Childsadfasdfasfiasjfklasdjlfjasf index:", child.index)
-
     return 1 + count_nested_dolls(child)
 
 
