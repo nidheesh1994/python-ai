@@ -37,8 +37,8 @@ def display_paths(paths):
 h = hero_token.Hero_Token()
 
 print(h.start())
-# paths = depth_first_search(h, h.start())
+paths = depth_first_search(h, h.start())
 
-paths = breadth_first_search(h, [[h.start()]])
+# paths = breadth_first_search(h, [[h.start()]])
 
 display_paths(paths)

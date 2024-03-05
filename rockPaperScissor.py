@@ -4,8 +4,8 @@ class rockPaperScissors:
     #0 player
     #1 computer
     #2 tie
-    state = [8,7,5]
-    prediction = [.46,.26,.26]
+    state = [7,4,4]
+    prediction = [.33,.33,.33]
     
     
 
@@ -15,34 +15,27 @@ class rockPaperScissors:
         return result[(player,com)]
     
     def normalisation(self):
-        normal = 0
-        if sum(self.state) == 0:
-            return 1
-        
-        for i,p in enumerate(self.prediction):
-            normal+=(self.state[i]/sum(self.state))*self.prediction[i]
-        return normal
+        norm = 0
+        for i, p in enumerate(self.prediction):
+            norm += self.getProbabilityOfPlayer(i)*p
+        return norm
+
+    def getProbabilityOfPlayer(self,i):
+        return self.state[i]/sum(self.state)
+
     
     def predict(self):
-        normal = self.normalisation()
-        previousState = self.state[:]
-        
         newPrediction = []
-        for i,p in enumerate(self.prediction):
-            n = sum(previousState)
-            if n == 0:
-                n = 1
-            pred = ((previousState[i]/n)*p)/normal
-            newPrediction.append(pred)
-            
-        print("Probality of next win, player",newPrediction[0],"computer", newPrediction[1], "tie", newPrediction[2])
-            
-        return newPrediction
+        for i, p in enumerate(self.prediction):
+            probability = self.getProbabilityOfPlayer(i)
+            newPrediction.append((probability * p)/self.normalisation())
+        self.prediction = newPrediction
+        return self.prediction
     
     def play(self):
         play = True
         plays = ['r','s','p']
-        self.predict()
+        
         while(play) :
             player = input('Enter your choice (r for rock, p for paper, s for scissors: ')
 
@@ -64,8 +57,9 @@ class rockPaperScissors:
             
             self.prediction = self.predict()
             
-            
-            print(self.state)
+            print("Current state",self.state)
+            print("Predictions:",self.prediction)
+
             play = input("Do you want to continue? y/n ")
             if play == 'y':
                 play = True
