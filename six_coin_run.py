@@ -10,14 +10,14 @@ s = six_coin.SixCoin()
 
 paths = depth_first_search(s,s.start())
 
-print("Depth first search")
-for p in paths:
-    print(p)
+# print("Depth first search")
+# for p in paths:
+#     print(p)
 
-print("\n\n Breadth first search")
-paths = breadth_first_search(s, [[s.start()]])
-for p in paths:
-    print(p)
+# print("\n\n Breadth first search")
+# paths = breadth_first_search(s, [[s.start()]])
+# for p in paths:
+    # print(p)
 
 print("\n\nBest first search")
 start_path = six_coin_path.SixCoinPath(path = [s.start()], length=1)

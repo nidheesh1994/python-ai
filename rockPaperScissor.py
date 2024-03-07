@@ -4,7 +4,7 @@ class rockPaperScissors:
     #0 player
     #1 computer
     #2 tie
-    state = [7,4,4]
+    state = [7,4,1]
     prediction = [.33,.33,.33]
     
     
